@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TP1</string>
+    <string name="button">Button</string>
+    <string name="hello_world">Hello World</string>
+    <string name="new_text_name">CC ça va ?</string>
+    <string name="toast_message">La notif</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
