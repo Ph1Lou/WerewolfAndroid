@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import fr.isima.ayangelophjambaud.GameViewItemAdapter
+import fr.isima.ayangelophjambaud.adapters.GameViewItemAdapter
 import fr.isima.ayangelophjambaud.R
 import fr.isima.ayangelophjambaud.viewmodel.GamesViewModel
 

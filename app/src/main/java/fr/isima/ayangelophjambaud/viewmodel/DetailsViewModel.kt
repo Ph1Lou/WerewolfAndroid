@@ -3,6 +3,7 @@ package fr.isima.ayangelophjambaud.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import fr.isima.ayangelophjambaud.models.Game
 import fr.isima.ayangelophjambaud.models.PrettyEvent
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -15,12 +16,12 @@ class DetailsViewModel(private val gameUUID: String) : ViewModel() {
 
     private val client = HttpClient(CIO) {
         install(JsonFeature){
-            serializer = GsonSerializer(){
+            serializer = GsonSerializer {
                 setPrettyPrinting()
                 disableHtmlEscaping()
             }
         }
-        install(Logging) {
+            install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.HEADERS
         }
@@ -33,8 +34,8 @@ class DetailsViewModel(private val gameUUID: String) : ViewModel() {
 
     private fun loadItems() {
         viewModelScope.launch {
-            val game:List<PrettyEvent> = client.get("https://api.ph1lou.fr/getPrettyEventsWithGame/$gameUUID");
-            items.postValue(game)
+            val game: Game = client.get("https://api.ph1lou.fr/getPrettyEventsWithGame/$gameUUID")
+            items.postValue(game.prettyEvents)
         }
     }
 
