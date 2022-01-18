@@ -44,6 +44,9 @@ class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
         holder.buttonDetails.setOnClickListener{
             it.findNavController().navigate(R.id.detailsFragment, bundle)
         }
+        holder.buttonPlayers.setOnClickListener{
+            it.findNavController().navigate(R.id.playersFragment, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -56,7 +59,7 @@ class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
         var textDate: TextView = itemView.findViewById(R.id.textDate)
         var textPlayerCount: TextView = itemView.findViewById(R.id.textPlayerCount)
         var textWinnerCamp: TextView = itemView.findViewById(R.id.textWinnerCamp)
-        private var buttonPlayer: Button = itemView.findViewById(R.id.buttonPlayers)
+        var buttonPlayers: Button = itemView.findViewById(R.id.buttonPlayers)
         var buttonDetails: Button = itemView.findViewById(R.id.buttonDetails)
 
     }

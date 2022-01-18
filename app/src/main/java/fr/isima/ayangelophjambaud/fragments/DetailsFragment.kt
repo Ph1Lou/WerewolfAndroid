@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -37,6 +38,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.details_fragment, container, false)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBarDetails)
 
         viewModel.items.observe(viewLifecycleOwner, { items ->
             recyclerviewItemAdapter = DetailsViewItemAdapter(items)
@@ -48,6 +50,7 @@ class DetailsFragment : Fragment() {
             recyclerView?.layoutManager = layoutManager
             recyclerView?.itemAnimator = DefaultItemAnimator()
             recyclerView?.adapter = recyclerviewItemAdapter
+            progressBar.visibility = View.INVISIBLE
         })
 
         return view

@@ -8,11 +8,7 @@
         android:id="@+id/detailsFragment"
         android:name="fr.isima.ayangelophjambaud.fragments.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" >
-        <argument
-            android:name="game_uuid"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/details_fragment" />
     <fragment
         android:id="@+id/gameFragment"
         android:name="fr.isima.ayangelophjambaud.fragments.GameFragment"
@@ -21,6 +17,9 @@
         <action
             android:id="@+id/action_gameFragment4_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_gameFragment_to_playersFragment"
+            app:destination="@id/playersFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -31,4 +30,9 @@
             android:id="@+id/action_mainFragment2_to_gameFragment4"
             app:destination="@id/gameFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/playersFragment"
+        android:name="fr.isima.ayangelophjambaud.fragments.PlayersFragment"
+        android:label="players_fragment"
+        tools:layout="@layout/players_fragment" />
 </navigation>

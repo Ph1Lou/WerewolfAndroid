@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -12,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.isima.ayangelophjambaud.adapters.GameViewItemAdapter
 import fr.isima.ayangelophjambaud.R
 import fr.isima.ayangelophjambaud.viewmodel.GamesViewModel
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class GameFragment : Fragment() {
@@ -32,6 +38,8 @@ class GameFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.game_fragment, container, false)
 
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBarGames)
+
         model.items.observe(viewLifecycleOwner, { items ->
             recyclerviewItemAdapter = GameViewItemAdapter(items)
             recyclerView = view.findViewById(R.id.recyclerView)
@@ -42,6 +50,7 @@ class GameFragment : Fragment() {
             recyclerView?.layoutManager = layoutManager
             recyclerView?.itemAnimator = DefaultItemAnimator()
             recyclerView?.adapter = recyclerviewItemAdapter
+            progressBar.visibility = View.INVISIBLE
         })
 
         return view

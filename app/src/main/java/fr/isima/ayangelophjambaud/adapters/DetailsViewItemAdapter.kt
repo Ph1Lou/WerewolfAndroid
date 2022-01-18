@@ -44,7 +44,7 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
             //val d: Drawable = BitmapDrawable(context.resources, decodedByte)
             val spanString = SpannableString("${player.name}")
-            spanString.setSpan(ImageSpan(context,decodedByte), 2, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spanString.setSpan(ImageSpan(context, decodedByte), player.name.length, player.name.length+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             text = text.replace("{$i}",spanString.toString())
         }
 
