@@ -39,16 +39,18 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
         val ss: Long = TimeUnit.SECONDS.toSeconds(duration) % 60
         var text = item.text
         for(i in item.players.indices){
-            val player = item.players.get(i)
+            val player = item.players[i]
             val decodedString: ByteArray = Base64.decode(player.head, Base64.DEFAULT)
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
             //val d: Drawable = BitmapDrawable(context.resources, decodedByte)
-            val spanString = SpannableString("${player.name}")
-            spanString.setSpan(ImageSpan(context, decodedByte), player.name.length, player.name.length+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            text = text.replace("{$i}",spanString.toString())
+            val spanString = SpannableString("${player.name}    ")
+            val image = ImageSpan(context, decodedByte, ImageSpan.ALIGN_CENTER)
+            spanString.setSpan(image, player.name.length+1, player.name.length+3, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+            //text = text.replace("{$i}",spanString.toString())
+            holder.eventName.text = spanString
         }
 
-        holder.eventName.text = "${String.format("%02d:%02d:%02d", hh, mm, ss)} $text"
+       // holder.eventName.text = "${String.format("%02d:%02d:%02d", hh, mm, ss)} $text"
         holder.eventName.highlightColor = item.color
 
     }
