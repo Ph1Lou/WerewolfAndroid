@@ -1,6 +1,7 @@
 package fr.isima.ayangelophjambaud.adapters
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.isima.ayangelophjambaud.R
 import fr.isima.ayangelophjambaud.models.Game
 import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -26,10 +28,11 @@ class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
         return GameHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: GameHolder, position: Int) {
         val item: Game = gamesList[position]
         val pattern = "HH:mm dd-MM-yyyy"
-        val simpleDateFormat = SimpleDateFormat(pattern)
+        val simpleDateFormat = SimpleDateFormat(pattern, Locale.FRANCE)
         val duration: Long = item.duration.toLong()
         val hh: Long = TimeUnit.SECONDS.toHours(duration)
         val mm: Long = TimeUnit.SECONDS.toMinutes(duration) % 60
@@ -38,7 +41,7 @@ class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
         holder.textDate.text = simpleDateFormat.format(item.date)
         holder.textDuration.text = String.format("%02d:%02d:%02d", hh, mm, ss)
         holder.textWinnerCamp.text = item.winnerCamp
-        holder.textPlayerCount.text = item.playerSize.toString()
+        holder.textPlayerCount.text = item.playersCount.toString() + " joueurs"
         val bundle= Bundle()
         bundle.putString("game_uuid",item.gameUUID.toString())
         holder.buttonDetails.setOnClickListener{

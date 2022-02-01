@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.isima.ayangelophjambaud.R
-import fr.isima.ayangelophjambaud.adapters.DetailsViewItemAdapter
 import fr.isima.ayangelophjambaud.adapters.PlayersViewItemAdapter
-import fr.isima.ayangelophjambaud.viewmodel.DetailsViewModel
 import fr.isima.ayangelophjambaud.viewmodel.PlayersViewModel
 
 private const val GAME_UUID = "game_uuid"
@@ -23,15 +21,6 @@ class PlayersFragment : Fragment() {
     private var gameUUID: String? = null
     private var recyclerView: RecyclerView? = null
     private var recyclerviewItemAdapter: PlayersViewItemAdapter? = null
-
-    companion object {
-        fun newInstance() = PlayersFragment().apply {
-            arguments = Bundle().apply {
-                putString(GAME_UUID, gameUUID)
-            }
-        }
-    }
-
     private lateinit var viewModel: PlayersViewModel
 
     override fun onCreateView(
@@ -69,7 +58,7 @@ class PlayersFragment : Fragment() {
     class PlayersViewModelFactory(private val gameUUID: String?) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(String::class.java).newInstance(gameUUID);
+            return modelClass.getConstructor(String::class.java).newInstance(gameUUID)
         }
 
     }

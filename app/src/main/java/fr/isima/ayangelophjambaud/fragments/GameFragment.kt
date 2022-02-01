@@ -4,20 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ProgressBar
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import fr.isima.ayangelophjambaud.adapters.GameViewItemAdapter
+import fr.isima.ayangelophjambaud.MainActivity
 import fr.isima.ayangelophjambaud.R
+import fr.isima.ayangelophjambaud.adapters.GameViewItemAdapter
 import fr.isima.ayangelophjambaud.viewmodel.GamesViewModel
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class GameFragment : Fragment() {
@@ -25,10 +21,6 @@ class GameFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var recyclerviewItemAdapter: GameViewItemAdapter? = null
     private val model: GamesViewModel by viewModels()
-
-    companion object {
-        fun newInstance() = GameFragment()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +45,14 @@ class GameFragment : Fragment() {
             progressBar.visibility = View.INVISIBLE
         })
 
+        showBackButton()
+
         return view
+    }
+
+    private fun showBackButton() {
+        if (activity is MainActivity) {
+                (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
     }
 }

@@ -23,13 +23,6 @@ class DetailsFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var recyclerviewItemAdapter: DetailsViewItemAdapter? = null
 
-    companion object {
-        fun newInstance() = DetailsFragment().apply {
-            arguments = Bundle().apply {
-                putString(GAME_UUID, gameUUID)
-            }
-        }
-    }
 
     private lateinit var viewModel: DetailsViewModel
 
@@ -63,12 +56,13 @@ class DetailsFragment : Fragment() {
         }
         viewModel = ViewModelProvider(this, DetailsViewModelFactory(gameUUID)).get(DetailsViewModel::class.java)
 
+
     }
 
     class DetailsViewModelFactory(private val gameUUID: String?) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(String::class.java).newInstance(gameUUID);
+            return modelClass.getConstructor(String::class.java).newInstance(gameUUID)
         }
 
     }

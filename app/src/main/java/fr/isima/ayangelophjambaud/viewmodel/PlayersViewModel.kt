@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.isima.ayangelophjambaud.models.Game
 import fr.isima.ayangelophjambaud.models.PlayerInfo
-import fr.isima.ayangelophjambaud.models.PrettyEvent
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
@@ -35,7 +34,7 @@ class PlayersViewModel(private val gameUUID: String) : ViewModel() {
 
     private fun loadItems() {
         viewModelScope.launch {
-            val game: Game = client.get("https://api.ph1lou.fr/getPlayersWithGame/$gameUUID")
+            val game: Game = client.get("https://api.ph1lou.fr/games/players/$gameUUID")
             items.postValue(game.players)
         }
     }

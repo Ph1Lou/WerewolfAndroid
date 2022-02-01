@@ -15,7 +15,7 @@ class GamesViewModel : ViewModel() {
 
     private val client = HttpClient(CIO) {
         install(JsonFeature){
-            serializer = GsonSerializer(){
+            serializer = GsonSerializer {
                 setPrettyPrinting()
                 disableHtmlEscaping()
             }
@@ -33,7 +33,7 @@ class GamesViewModel : ViewModel() {
 
     private fun loadItems() {
         viewModelScope.launch {
-            val game:List<Game> = client.get("https://api.ph1lou.fr/getGames/0/30");
+            val game:List<Game> = client.get("https://api.ph1lou.fr/games/get/0/30")
             items.postValue(game)
         }
     }
