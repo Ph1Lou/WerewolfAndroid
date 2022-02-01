@@ -2,6 +2,7 @@ package fr.isima.ayangelophjambaud.adapters
 
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +21,13 @@ import java.util.concurrent.TimeUnit
 class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
     RecyclerView.Adapter<GameViewItemAdapter.GameHolder>()
 {
+    private lateinit var context: Context
     private val gamesList: List<Game> = mItemList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.game_item, parent, false)
+        context = parent.context
         return GameHolder(view)
     }
 
@@ -41,7 +44,7 @@ class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
         holder.textDate.text = simpleDateFormat.format(item.date)
         holder.textDuration.text = String.format("%02d:%02d:%02d", hh, mm, ss)
         holder.textWinnerCamp.text = item.winnerCamp
-        holder.textPlayerCount.text = item.playersCount.toString() + " joueurs"
+        holder.textPlayerCount.text = context.getString(R.string.playersCount,item.playersCount)
         val bundle= Bundle()
         bundle.putString("game_uuid",item.gameUUID.toString())
         holder.buttonDetails.setOnClickListener{

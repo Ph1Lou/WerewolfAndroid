@@ -1,10 +1,8 @@
 package fr.isima.ayangelophjambaud
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
 

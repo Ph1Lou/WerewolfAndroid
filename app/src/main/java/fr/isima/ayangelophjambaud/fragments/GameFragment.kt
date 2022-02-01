@@ -52,7 +52,9 @@ class GameFragment : Fragment() {
 
     private fun showBackButton() {
         if (activity is MainActivity) {
-                (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            val actionBar = (activity as MainActivity).supportActionBar
+            actionBar?.setDisplayHomeAsUpEnabled(true)
+            actionBar?.title = getString(R.string.titleGames)
         }
     }
 }

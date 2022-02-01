@@ -34,7 +34,9 @@ class MainFragment : Fragment() {
 
     private fun removeBackButton() {
         if (activity is MainActivity) {
-            (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            val actionBar = (activity as MainActivity).supportActionBar
+            actionBar?.setDisplayHomeAsUpEnabled(false)
+            actionBar?.title = getString(R.string.app_name)
         }
     }
 }

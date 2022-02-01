@@ -3,7 +3,8 @@
     android:id="@+id/playerLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="8dp">
 
     <LinearLayout
         android:id="@+id/playerInfo"
@@ -20,6 +21,7 @@
             android:id="@+id/playerName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
             android:textSize="20sp"/>
 
         <TextView
@@ -27,6 +29,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/winIcon"
+            android:src="@drawable/ic_baseline_done_outline_24"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="invisible"/>
 
 
 

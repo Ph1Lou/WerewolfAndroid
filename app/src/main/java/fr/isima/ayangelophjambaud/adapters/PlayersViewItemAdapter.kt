@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.isima.ayangelophjambaud.R
@@ -34,16 +33,10 @@ class PlayersViewItemAdapter internal constructor(mItemList: List<PlayerInfo>) :
         holder.playerName.text = item.name + " : "
         holder.playerRole.text = item.roleTranslation + " "
 
-        if (item.winner) {
-            val winIcon = ImageView(context)
-            winIcon.setImageResource(R.drawable.ic_baseline_done_outline_24)
-            holder.playerInfo.addView(winIcon)
-        }
-        else {
-            val deathIcon = ImageView(context)
-            deathIcon.setImageResource(R.drawable.ic_baseline_church_24)
-            holder.playerInfo.addView(deathIcon)
-        }
+        if (item.winner) holder.winIcon.visibility = View.VISIBLE
+
+
+
 
     }
 
@@ -55,7 +48,7 @@ class PlayersViewItemAdapter internal constructor(mItemList: List<PlayerInfo>) :
         var playerHead: ImageView = itemView.findViewById(R.id.playerHead)
         var playerName: TextView = itemView.findViewById(R.id.playerName)
         var playerRole: TextView = itemView.findViewById(R.id.playerRole)
-        var playerInfo: LinearLayout = itemView.findViewById(R.id.playerInfo)
+        var winIcon: ImageView = itemView.findViewById(R.id.winIcon)
 
     }
 }

@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">WereWolf Game Review</string>
-    <string name="see_games">Voir Parties</string>
+    <string name="see_games">Voir parties</string>
     <string name="players">Players</string>
     <string name="details">Details</string>
+    <string name="titlePlayers">Liste des joueurs</string>
+    <string name="titleDetails">Détails de la partie</string>
+    <string name="titleGames">Liste des parties</string>
+    <string name="playersCount">%1$d joueurs</string>
 </resources>

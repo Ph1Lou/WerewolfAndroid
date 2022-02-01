@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fr.isima.ayangelophjambaud.MainActivity
 import fr.isima.ayangelophjambaud.adapters.DetailsViewItemAdapter
 import fr.isima.ayangelophjambaud.R
 import fr.isima.ayangelophjambaud.viewmodel.DetailsViewModel
@@ -55,7 +56,9 @@ class DetailsFragment : Fragment() {
             gameUUID = it.getString(GAME_UUID)
         }
         viewModel = ViewModelProvider(this, DetailsViewModelFactory(gameUUID)).get(DetailsViewModel::class.java)
-
+        if (activity is MainActivity) {
+            (activity as MainActivity).supportActionBar?.title = getString(R.string.titleDetails)
+        }
 
     }
 
