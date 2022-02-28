@@ -26,7 +26,9 @@ class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.game_item, parent, false)
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.game_item, parent, false)
         context = parent.context
         return GameHolder(view)
     }
@@ -67,7 +69,6 @@ class GameViewItemAdapter internal constructor(mItemList: List<Game>) :
         var textWinnerCamp: TextView = itemView.findViewById(R.id.textWinnerCamp)
         var buttonPlayers: Button = itemView.findViewById(R.id.buttonPlayers)
         var buttonDetails: Button = itemView.findViewById(R.id.buttonDetails)
-
     }
 
 }

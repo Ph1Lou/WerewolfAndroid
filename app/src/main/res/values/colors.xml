@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#7863A6</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="textColor1">#155724</color>
     <color name="textColor2">#856404</color>
@@ -17,5 +17,6 @@
     <color name="textBackgroundColor5">#d1ecf1</color>
     <color name="textBackgroundColor6">#f8d7da</color>
     <color name="textBackgroundColor7">#fefefe</color>
+    <color name="gamesBackgroundColor">#8DD6D8D9</color>
 
 </resources>

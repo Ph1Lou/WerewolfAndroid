@@ -7,4 +7,6 @@
     <string name="titleDetails">Détails de la partie</string>
     <string name="titleGames">Liste des parties</string>
     <string name="playersCount">%1$d joueurs</string>
+    <string name="sort">Tri</string>
+    <string name="search_player">Rechercher Joueur</string>
 </resources>

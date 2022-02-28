@@ -28,7 +28,9 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.detail_item, parent, false)
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.detail_item, parent, false)
         this.context = parent.context
         return DetailsHolder(view)
     }
@@ -73,7 +75,7 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
         //val d: Drawable = BitmapDrawable(context.resources, decodedByte)
         val spanString = SpannableString(text)
 
-        //Relace placeholder with bitmap image
+        //Replace placeholder with bitmap image
         for(placeHolder in placeHolders){
             val image = ImageSpan(context,images[placeHolder.second])
             spanString.setSpan(image, placeHolder.first, placeHolder.first+3, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
@@ -91,8 +93,6 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
 
     inner class DetailsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var eventName: TextView = itemView.findViewById(R.id.eventName)
-
-
     }
 
 }

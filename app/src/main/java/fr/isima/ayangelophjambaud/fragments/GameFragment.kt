@@ -32,7 +32,7 @@ class GameFragment : Fragment() {
 
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBarGames)
 
-        model.items.observe(viewLifecycleOwner, { items ->
+        model.items.observe(viewLifecycleOwner) { items ->
             recyclerviewItemAdapter = GameViewItemAdapter(items)
             recyclerView = view.findViewById(R.id.recyclerView)
             recyclerView?.setHasFixedSize(true)
@@ -43,18 +43,18 @@ class GameFragment : Fragment() {
             recyclerView?.itemAnimator = DefaultItemAnimator()
             recyclerView?.adapter = recyclerviewItemAdapter
             progressBar.visibility = View.INVISIBLE
-        })
+        }
 
-        showBackButton()
+        removeBackButton()
 
         return view
     }
 
-    private fun showBackButton() {
+    private fun removeBackButton() {
         if (activity is MainActivity) {
             val actionBar = (activity as MainActivity).supportActionBar
-            actionBar?.setDisplayHomeAsUpEnabled(true)
-            actionBar?.title = getString(R.string.titleGames)
+            actionBar?.setDisplayHomeAsUpEnabled(false)
+            actionBar?.title = getString(R.string.app_name)
         }
     }
 }

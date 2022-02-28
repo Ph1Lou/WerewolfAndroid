@@ -34,8 +34,12 @@ class PlayersViewModel(private val gameUUID: String) : ViewModel() {
 
     private fun loadItems() {
         viewModelScope.launch {
-            val game: Game = client.get("https://api.ph1lou.fr/games/players/$gameUUID")
-            items.postValue(game.players)
+            try{
+                val game: Game = client.get("https://api.ph1lou.fr/games/players/$gameUUID")
+                items.postValue(game.players)
+            }
+            catch(exception:Exception){
+            }
         }
     }
 

@@ -21,7 +21,9 @@ class PlayersViewItemAdapter internal constructor(mItemList: List<PlayerInfo>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayersHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.players_item, parent, false)
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.players_item, parent, false)
         this.context = parent.context
         return PlayersHolder(view)
     }
@@ -32,12 +34,7 @@ class PlayersViewItemAdapter internal constructor(mItemList: List<PlayerInfo>) :
         holder.playerHead.setImageBitmap(PlayerUtils.getHead(context, item.head))
         holder.playerName.text = item.name + " : "
         holder.playerRole.text = item.roleTranslation + " "
-
-        if (item.winner) holder.winIcon.visibility = View.VISIBLE
-
-
-
-
+        holder.winIcon.visibility = if (item.winner) View.VISIBLE else View.INVISIBLE
     }
 
     override fun getItemCount(): Int {
@@ -49,6 +46,5 @@ class PlayersViewItemAdapter internal constructor(mItemList: List<PlayerInfo>) :
         var playerName: TextView = itemView.findViewById(R.id.playerName)
         var playerRole: TextView = itemView.findViewById(R.id.playerRole)
         var winIcon: ImageView = itemView.findViewById(R.id.winIcon)
-
     }
 }
