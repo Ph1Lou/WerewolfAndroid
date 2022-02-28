@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.ActionMenuItem
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +14,6 @@ import fr.isima.ayangelophjambaud.MainActivity
 import fr.isima.ayangelophjambaud.R
 import fr.isima.ayangelophjambaud.adapters.DetailsViewItemAdapter
 import fr.isima.ayangelophjambaud.viewmodel.DetailsViewModel
-import java.util.stream.Collector
 import java.util.stream.Collectors
 
 
@@ -37,7 +35,7 @@ class DetailsFragment : Fragment() {
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBarDetails)
 
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            var items2 = items;
+            var items2 = items
             if(!order){
                 items2 = items2.stream().sorted { prettyEvent1, prettyEvent2 -> prettyEvent1.timer - prettyEvent2.timer }.collect(
                     Collectors.toList())
@@ -75,7 +73,7 @@ class DetailsFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.action_item_sort, menu)
-        val searchItem = menu.findItem(R.id.up)
+        menu.findItem(R.id.up)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
@@ -94,7 +92,7 @@ class DetailsFragment : Fragment() {
 
     private fun refreshRecyclerView() {
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            var items2 = items;
+            var items2 = items
             if (!order) {
                 items2 = items2.stream()
                     .sorted { prettyEvent1, prettyEvent2 -> prettyEvent2.timer - prettyEvent1.timer }

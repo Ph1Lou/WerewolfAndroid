@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.isima.ayangelophjambaud.MainActivity
 import fr.isima.ayangelophjambaud.R
-import fr.isima.ayangelophjambaud.adapters.DetailsViewItemAdapter
 import fr.isima.ayangelophjambaud.adapters.PlayersViewItemAdapter
 import fr.isima.ayangelophjambaud.viewmodel.PlayersViewModel
 import java.util.stream.Collectors
@@ -102,7 +101,7 @@ class PlayersFragment : Fragment() {
 
     private fun refreshRecyclerView(text: String) {
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            var items2 = items;
+            var items2 = items
             items2 = items2.stream()
                 .filter{ it.name.startsWith(text, true)}
                 .collect(

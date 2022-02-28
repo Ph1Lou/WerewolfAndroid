@@ -15,7 +15,8 @@
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:contentInsetStartWithNavigation="0dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPlayers"
         android:layout_width="match_parent"
