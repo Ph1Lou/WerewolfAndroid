@@ -35,18 +35,10 @@ class DetailsFragment : Fragment() {
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBarDetails)
 
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            var items2 = items
-            if(!order){
-                items2 = items2.stream().sorted { prettyEvent1, prettyEvent2 -> prettyEvent1.timer - prettyEvent2.timer }.collect(
-                    Collectors.toList())
-            }
-            recyclerviewItemAdapter = DetailsViewItemAdapter(items2)
+            recyclerviewItemAdapter = DetailsViewItemAdapter(items)
             recyclerView = view.findViewById(R.id.recyclerViewDetails)
             recyclerView?.setHasFixedSize(true)
-            val layoutManager: RecyclerView.LayoutManager =
-                LinearLayoutManager(view.context)
-
-            recyclerView?.layoutManager = layoutManager
+            recyclerView?.layoutManager = LinearLayoutManager(view.context)
             recyclerView?.itemAnimator = DefaultItemAnimator()
             recyclerView?.adapter = recyclerviewItemAdapter
             progressBar.visibility = View.INVISIBLE
@@ -73,24 +65,20 @@ class DetailsFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.action_item_sort, menu)
-        menu.findItem(R.id.up)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.up -> {
             order=!order
-            refreshRecyclerView()
+            refreshRecyclerViewOrder()
             true
         }
-
         else -> {
-            // If we got here, the user's action was not recognized.
-            // Invoke the superclass to handle it.
             super.onOptionsItemSelected(item)
         }
     }
 
-    private fun refreshRecyclerView() {
+    private fun refreshRecyclerViewOrder() {
         viewModel.items.observe(viewLifecycleOwner) { items ->
             var items2 = items
             if (!order) {
@@ -105,19 +93,19 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    class DetailsViewModelFactory(private val gameUUID: String?) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(String::class.java).newInstance(gameUUID)
-        }
-
-    }
-
     private fun showBackButton() {
         if (activity is MainActivity) {
             val actionBar = (activity as MainActivity).supportActionBar
             actionBar?.setDisplayHomeAsUpEnabled(true)
             actionBar?.title = getString(R.string.titleDetails)
         }
+    }
+
+    class DetailsViewModelFactory(private val gameUUID: String?) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return modelClass.getConstructor(String::class.java).newInstance(gameUUID)
+        }
+
     }
 }

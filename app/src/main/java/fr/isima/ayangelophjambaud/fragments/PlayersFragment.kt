@@ -36,10 +36,7 @@ class PlayersFragment : Fragment() {
             recyclerviewItemAdapter = PlayersViewItemAdapter(items)
             recyclerView = view.findViewById(R.id.recyclerViewPlayers)
             recyclerView?.setHasFixedSize(true)
-            val layoutManager: RecyclerView.LayoutManager =
-                LinearLayoutManager(view.context)
-
-            recyclerView?.layoutManager = layoutManager
+            recyclerView?.layoutManager = LinearLayoutManager(view.context)
             recyclerView?.itemAnimator = DefaultItemAnimator()
             recyclerView?.adapter = recyclerviewItemAdapter
             progressBar.visibility = View.INVISIBLE
@@ -62,14 +59,6 @@ class PlayersFragment : Fragment() {
         viewModel = ViewModelProvider(this, PlayersViewModelFactory(gameUUID))[PlayersViewModel::class.java]
 
 
-
-    }
-
-    class PlayersViewModelFactory(private val gameUUID: String?) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(String::class.java).newInstance(gameUUID)
-        }
 
     }
 
@@ -110,5 +99,13 @@ class PlayersFragment : Fragment() {
             recyclerviewItemAdapter = PlayersViewItemAdapter(items2)
             recyclerView?.adapter = recyclerviewItemAdapter
         }
+    }
+
+    class PlayersViewModelFactory(private val gameUUID: String?) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return modelClass.getConstructor(String::class.java).newInstance(gameUUID)
+        }
+
     }
 }

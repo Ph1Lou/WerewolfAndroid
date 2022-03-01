@@ -36,10 +36,7 @@ class GameFragment : Fragment() {
             recyclerviewItemAdapter = GameViewItemAdapter(items)
             recyclerView = view.findViewById(R.id.recyclerView)
             recyclerView?.setHasFixedSize(true)
-            val layoutManager: RecyclerView.LayoutManager =
-                LinearLayoutManager(view.context)
-
-            recyclerView?.layoutManager = layoutManager
+            recyclerView?.layoutManager =LinearLayoutManager(view.context)
             recyclerView?.itemAnimator = DefaultItemAnimator()
             recyclerView?.adapter = recyclerviewItemAdapter
             progressBar.visibility = View.INVISIBLE

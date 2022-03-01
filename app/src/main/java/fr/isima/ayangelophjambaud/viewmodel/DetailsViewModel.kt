@@ -35,12 +35,11 @@ class DetailsViewModel(private val gameUUID: String) : ViewModel() {
     private fun loadItems() {
         viewModelScope.launch {
             try{
-            val game: Game = client.get("https://api.ph1lou.fr/games/events/$gameUUID")
-            items.postValue(game.prettyEvents)
+                val game: Game = client.get("https://api.ph1lou.fr/games/events/$gameUUID")
+                items.postValue(game.prettyEvents)
             }
-        catch(exception:Exception){
-
-        }
+            catch(exception:Exception){
+            }
         }
     }
 

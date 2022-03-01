@@ -1,7 +1,6 @@
 package fr.isima.ayangelophjambaud.adapters
 
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.text.Spannable
@@ -17,7 +16,7 @@ import fr.isima.ayangelophjambaud.R
 import fr.isima.ayangelophjambaud.models.PrettyEvent
 import fr.isima.ayangelophjambaud.utils.ColorUtil
 import fr.isima.ayangelophjambaud.utils.PlayerUtils
-import java.util.concurrent.TimeUnit
+import fr.isima.ayangelophjambaud.utils.TimeUtils
 
 
 class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) :
@@ -35,19 +34,14 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
         return DetailsHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DetailsHolder, position: Int) {
         val item: PrettyEvent = eventsList[position]
-        val duration: Long = item.timer.toLong()
-        val hh: Long = TimeUnit.SECONDS.toHours(duration)
-        val mm: Long = TimeUnit.SECONDS.toMinutes(duration) % 60
-        val ss: Long = TimeUnit.SECONDS.toSeconds(duration) % 60
         var text = item.text
         val placeHolders = ArrayList<Pair<Int,Int>>()
         val images = ArrayList<Bitmap>()
         val stringBuilder = StringBuilder(text)
 
-        //add playerName before head placeholder
+        //Add playerName before head placeholder
         var i=0
         while(i < stringBuilder.length) {
             if (stringBuilder[i] == '{') {
@@ -59,7 +53,7 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
         }
 
         //Add Timer before text
-        text = String.format("%02d:%02d:%02d", hh, mm, ss) + " " + stringBuilder.toString()
+        text = TimeUtils.getDuration(item.timer.toLong()) + " " + stringBuilder.toString()
 
         for(player in item.players){
             images.add(PlayerUtils.getHead(context, player.head))
@@ -72,7 +66,6 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
             }
         }
 
-        //val d: Drawable = BitmapDrawable(context.resources, decodedByte)
         val spanString = SpannableString(text)
 
         //Replace placeholder with bitmap image
@@ -82,8 +75,10 @@ class DetailsViewItemAdapter internal constructor(mItemList: List<PrettyEvent>) 
         }
 
         holder.eventName.text = spanString
-        holder.eventName.setBackgroundColor(ContextCompat.getColor(context, ColorUtil.getBackGroundColor(item.color)))
-        holder.eventName.setTextColor(ContextCompat.getColor(context, ColorUtil.getTextColor(item.color)))
+        holder.eventName.setBackgroundColor(ContextCompat.getColor(context,
+            ColorUtil.getBackGroundColor(item.color)))
+        holder.eventName.setTextColor(ContextCompat.getColor(context,
+            ColorUtil.getTextColor(item.color)))
     }
 
 
